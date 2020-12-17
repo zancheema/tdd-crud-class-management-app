@@ -29,7 +29,7 @@ public class ClassRoomDaoTest {
     /**
      * Executes before each Test.
      * Initializes a new in-memory temporary database
-     * and caches the Teacher database-access-object.
+     * and caches the ClassRoom database-access-object.
      */
     @Before
     public void createDb() {
