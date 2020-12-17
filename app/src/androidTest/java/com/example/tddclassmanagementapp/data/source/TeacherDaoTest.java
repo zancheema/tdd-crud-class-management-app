@@ -71,7 +71,6 @@ public class TeacherDaoTest {
         // When: updated and fetched
         teacher.setName("Jane Doe");
         teacherDao.update(teacher);
-
         Teacher fetchedTeacher = teacherDao.get(teacher.getId());
 
         // Then: returns the updated teacher
