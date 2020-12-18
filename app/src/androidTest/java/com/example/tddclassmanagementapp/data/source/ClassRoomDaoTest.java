@@ -54,7 +54,7 @@ public class ClassRoomDaoTest {
         classRoomDao.insert(classRoom);
 
         // When: classRoom is fetched by id of inserted classRoom
-        ClassRoom fetchedClassRoom = classRoomDao.get(classRoom.getId());
+        ClassRoom fetchedClassRoom = classRoomDao.getById(classRoom.getId());
 
         // Then: inserted classRoom is returned
         assertThat(fetchedClassRoom, is(notNullValue()));
@@ -72,7 +72,7 @@ public class ClassRoomDaoTest {
         // When: update classRoom and fetch it
         classRoom.setName("Maths class");
         classRoomDao.update(classRoom);
-        ClassRoom updatedClassRoom = classRoomDao.get(classRoom.getId());
+        ClassRoom updatedClassRoom = classRoomDao.getById(classRoom.getId());
 
         // Then: updated classRoom is returned
         assertThat(updatedClassRoom, is(notNullValue()));
@@ -89,7 +89,7 @@ public class ClassRoomDaoTest {
 
         // When: delete and fetch it by id
         classRoomDao.delete(classRoom);
-        ClassRoom fetchedClassRoom = classRoomDao.get(classRoom.getId());
+        ClassRoom fetchedClassRoom = classRoomDao.getById(classRoom.getId());
 
         // Then: nothing is returned
         assertThat(fetchedClassRoom, is(nullValue()));

@@ -14,7 +14,7 @@ public interface ClassRoomDao {
     void insert(ClassRoom c);
 
     @Query("SELECT * FROM class_rooms WHERE id = :id")
-    ClassRoom get(String id);
+    ClassRoom getById(String id);
 
     @Update
     void update(ClassRoom c);

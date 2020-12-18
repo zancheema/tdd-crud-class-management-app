@@ -8,13 +8,18 @@ import androidx.room.Update;
 
 import com.example.tddclassmanagementapp.data.source.entities.Teacher;
 
+import java.util.List;
+
 @Dao
 public interface TeacherDao {
+    @Query("SELECT * FROM teachers ORDER BY name")
+    List<Teacher> getAll();
+
     @Insert
     void insert(Teacher t);
 
     @Query("SELECT * FROM teachers WHERE id = :id")
-    Teacher get(String id);
+    Teacher getById(String id);
 
     @Update
     void update(Teacher t);

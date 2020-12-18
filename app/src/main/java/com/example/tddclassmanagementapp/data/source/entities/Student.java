@@ -19,7 +19,7 @@ public class Student {
     @Nullable
     private String classId;
 
-    public Student(int rollNo, @NonNull String name, @NonNull String classId) {
+    public Student(int rollNo, @NonNull String name, @Nullable String classId) {
         this.rollNo = rollNo;
         this.name = name;
         this.classId = classId;
@@ -49,5 +49,24 @@ public class Student {
 
     public void setClassId(@NonNull String classId) {
         this.classId = classId;
+    }
+
+    @Override
+    public boolean equals(@Nullable Object o) {
+        if (o == this) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Student other = (Student) o;
+        return this.getRollNo() == other.getRollNo() &&
+                (this.getName().equals(other.getName()) &&
+                this.getName().equals(other.getName()));
+    }
+
+    @Override
+    public String toString() {
+        return "Student{" +
+                "rollNo=" + rollNo +
+                ", name='" + name + '\'' +
+                ", classId='" + classId + '\'' +
+                '}';
     }
 }

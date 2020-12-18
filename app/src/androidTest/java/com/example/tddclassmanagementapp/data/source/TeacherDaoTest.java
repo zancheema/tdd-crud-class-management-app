@@ -15,6 +15,8 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import java.util.List;
+
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.notNullValue;
 import static org.hamcrest.Matchers.nullValue;
@@ -48,13 +50,29 @@ public class TeacherDaoTest {
     }
 
     @Test
+    public void getAll_returnsAllTeachers() {
+        // Given: list of teachers
+        List<Teacher> teachers = List.of(
+                new Teacher("Jane Doe"),
+                new Teacher("John Doe")
+        );
+        for (Teacher t : teachers) teacherDao.insert(t);
+
+        // When: fetch all
+        List<Teacher> fetchedTeachers = teacherDao.getAll();
+
+        // Then: returns all inserted teacher
+        assertThat(fetchedTeachers, is(teachers));
+    }
+
+    @Test
     public void insertNewTeacher_fetchTeacherById_returnsInsertedTeacher() {
         // Given: a teacher stored in database
         final Teacher mathsTeacher = new Teacher("Jane Doe");
         teacherDao.insert(mathsTeacher);
 
         // When: fetched by id
-        Teacher fetchedTeacher = teacherDao.get(mathsTeacher.getId());
+        Teacher fetchedTeacher = teacherDao.getById(mathsTeacher.getId());
 
         // Then: returns the inserted teacher
         assertThat(fetchedTeacher, is(notNullValue()));
@@ -71,7 +89,7 @@ public class TeacherDaoTest {
         // When: updated and fetched
         teacher.setName("Jane Doe");
         teacherDao.update(teacher);
-        Teacher fetchedTeacher = teacherDao.get(teacher.getId());
+        Teacher fetchedTeacher = teacherDao.getById(teacher.getId());
 
         // Then: returns the updated teacher
         assertThat(fetchedTeacher, is(notNullValue()));
@@ -87,7 +105,7 @@ public class TeacherDaoTest {
 
         // When: deleted and fetched
          teacherDao.delete(teacher);
-        Teacher fetchedTeacher = teacherDao.get(teacher.getId());
+        Teacher fetchedTeacher = teacherDao.getById(teacher.getId());
 
         // Then: the teacher is deleted and nothing is fetched
         assertThat(fetchedTeacher, is(nullValue()));
