@@ -1,5 +1,6 @@
 package com.example.tddclassmanagementapp.data.source.daos;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -12,14 +13,20 @@ import java.util.List;
 
 @Dao
 public interface ClassRoomDao {
-    @Insert
-    void insert(ClassRoom c);
-
     @Query("SELECT * FROM class_rooms ORDER BY name")
     List<ClassRoom> getAll();
 
     @Query("SELECT * FROM class_rooms WHERE id = :id")
     ClassRoom getById(String id);
+
+    @Query("SELECT * FROM class_rooms ORDER BY name")
+    LiveData<List<ClassRoom>> observeAll();
+
+    @Query("SELECT * FROM class_rooms WHERE id = :id")
+    LiveData<ClassRoom> observeById(String id);
+
+    @Insert
+    void insert(ClassRoom c);
 
     @Update
     void update(ClassRoom c);

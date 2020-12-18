@@ -12,6 +12,7 @@ import com.example.tddclassmanagementapp.data.source.entities.Teacher;
 
 @Database(
         entities = {Teacher.class, ClassRoom.class, Student.class},
+        exportSchema = false,
         version = 1
 )
 public abstract class AppDatabase extends RoomDatabase {

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/nav_graph"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.tddclassmanagementapp.home.HomeFragment"
+        android:label="HomeFragment" >
+        <action
+            android:id="@+id/action_homeFragment_to_studentsFragment"
+            app:destination="@id/studentsFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_teachersFragment"
+            app:destination="@id/teachersFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_classRoomsFragment"
+            app:destination="@id/classRoomsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/studentsFragment"
+        android:name="com.example.tddclassmanagementapp.students.StudentsFragment"
+        android:label="StudentsFragment" >
+        <action
+            android:id="@+id/action_studentsFragment_to_createStudentFragment"
+            app:destination="@id/createStudentFragment" />
+        <action
+            android:id="@+id/action_studentsFragment_to_createStudentFragment2"
+            app:destination="@id/createStudentFragment" />
+        <action
+            android:id="@+id/action_studentsFragment_to_editStudentFragment"
+            app:destination="@id/editStudentFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/teachersFragment"
+        android:name="com.example.tddclassmanagementapp.teachers.TeachersFragment"
+        android:label="TeachersFragment" >
+        <action
+            android:id="@+id/action_teachersFragment_to_createTeacherFragment"
+            app:destination="@id/createTeacherFragment" />
+        <action
+            android:id="@+id/action_teachersFragment_to_editTeacherFragment"
+            app:destination="@id/editTeacherFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/classRoomsFragment"
+        android:name="com.example.tddclassmanagementapp.classrooms.ClassRoomsFragment"
+        android:label="ClassRoomsFragment" >
+        <action
+            android:id="@+id/action_classRoomsFragment_to_classRoomFragment"
+            app:destination="@id/classRoomFragment" />
+        <action
+            android:id="@+id/action_classRoomsFragment_to_createClassRoomFragment"
+            app:destination="@id/createClassRoomFragment" />
+        <action
+            android:id="@+id/action_classRoomsFragment_to_editClassRoomFragment"
+            app:destination="@id/editClassRoomFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/createStudentFragment"
+        android:name="com.example.tddclassmanagementapp.create_student.CreateStudentFragment"
+        android:label="CreateStudentFragment" />
+    <fragment
+        android:id="@+id/editStudentFragment"
+        android:name="com.example.tddclassmanagementapp.edit_student.EditStudentFragment"
+        android:label="EditStudentFragment" />
+    <fragment
+        android:id="@+id/createTeacherFragment"
+        android:name="com.example.tddclassmanagementapp.create_teacher.CreateTeacherFragment"
+        android:label="CreateTeacherFragment" />
+    <fragment
+        android:id="@+id/editTeacherFragment"
+        android:name="com.example.tddclassmanagementapp.edit_teacher.EditTeacherFragment"
+        android:label="EditTeacherFragment" />
+    <fragment
+        android:id="@+id/classRoomFragment"
+        android:name="com.example.tddclassmanagementapp.classroom.ClassRoomFragment"
+        android:label="ClassRoomFragment" />
+    <fragment
+        android:id="@+id/createClassRoomFragment"
+        android:name="com.example.tddclassmanagementapp.create_classroom.CreateClassRoomFragment"
+        android:label="CreateClassRoomFragment" />
+    <fragment
+        android:id="@+id/editClassRoomFragment"
+        android:name="com.example.tddclassmanagementapp.edit_classroom.EditClassRoomFragment"
+        android:label="EditClassRoomFragment" />
+</navigation>

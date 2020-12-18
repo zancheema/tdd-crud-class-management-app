@@ -53,9 +53,9 @@ public class ClassRoomDaoTest {
     public void getAll_returnsAllClassRooms() {
         // Given: list of classrooms
         List<ClassRoom> classRooms = List.of(
-                new ClassRoom("Maths Class", null),
                 new ClassRoom("CS Class", null),
-                new ClassRoom("History Class", null)
+                new ClassRoom("History Class", null),
+                new ClassRoom("Maths Class", null)
         );
         for (ClassRoom c : classRooms) classRoomDao.insert(c);
 
