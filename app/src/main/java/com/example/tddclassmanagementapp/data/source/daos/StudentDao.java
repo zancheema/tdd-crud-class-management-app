@@ -22,15 +22,6 @@ public interface StudentDao {
     @Query("SELECT * FROM students WHERE roll_no = :roll")
     Student getById(int roll);
 
-    @Query("SELECT * FROM students ORDER BY roll_no")
-    LiveData<List<Student>> observeAll();
-
-    @Query("SELECT * FROM students WHERE class_id = :classId ORDER BY roll_no")
-    LiveData<List<Student>> observeByClassId(String classId);
-
-    @Query("SELECT * FROM students WHERE roll_no = :roll")
-    LiveData<Student> observeById(int roll);
-
     @Insert
     void insert(Student s);
 
