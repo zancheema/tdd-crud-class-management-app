@@ -15,6 +15,8 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import java.util.List;
+
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.notNullValue;
 import static org.hamcrest.Matchers.nullValue;
@@ -45,6 +47,23 @@ public class ClassRoomDaoTest {
     @After
     public void closeDb() {
         testDb.close();
+    }
+
+    @Test
+    public void getAll_returnsAllClassRooms() {
+        // Given: list of classrooms
+        List<ClassRoom> classRooms = List.of(
+                new ClassRoom("Maths Class", null),
+                new ClassRoom("CS Class", null),
+                new ClassRoom("History Class", null)
+        );
+        for (ClassRoom c : classRooms) classRoomDao.insert(c);
+
+        // When: fetched all
+        List<ClassRoom> fetchClassRooms = classRoomDao.getAll();
+
+        // Then: returns all classrooms
+        assertThat(fetchClassRooms, is(classRooms));
     }
 
     @Test
