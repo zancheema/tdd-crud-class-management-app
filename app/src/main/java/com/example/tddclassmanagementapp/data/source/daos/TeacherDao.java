@@ -19,12 +19,6 @@ public interface TeacherDao {
     @Query("SELECT * FROM teachers WHERE id = :id")
     Teacher getById(String id);
 
-    @Query("SELECT * FROM teachers ORDER BY name")
-    LiveData<List<Teacher>> observeAll();
-
-    @Query("SELECT * FROM teachers WHERE id = :id")
-    LiveData<Teacher> observeById(String id);
-
     @Insert
     void insert(Teacher t);
 

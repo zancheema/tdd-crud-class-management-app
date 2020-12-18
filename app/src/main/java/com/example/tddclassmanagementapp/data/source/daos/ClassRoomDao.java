@@ -19,12 +19,6 @@ public interface ClassRoomDao {
     @Query("SELECT * FROM class_rooms WHERE id = :id")
     ClassRoom getById(String id);
 
-    @Query("SELECT * FROM class_rooms ORDER BY name")
-    LiveData<List<ClassRoom>> observeAll();
-
-    @Query("SELECT * FROM class_rooms WHERE id = :id")
-    LiveData<ClassRoom> observeById(String id);
-
     @Insert
     void insert(ClassRoom c);
 
