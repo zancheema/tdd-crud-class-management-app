@@ -2,12 +2,13 @@ package com.example.tddclassmanagementapp.create_teacher;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.ViewModel;
 
 import com.example.tddclassmanagementapp.Event;
 import com.example.tddclassmanagementapp.data.source.AppRepository;
 import com.example.tddclassmanagementapp.data.source.entities.Teacher;
 
-public class CreateTeacherViewModel {
+public class CreateTeacherViewModel extends ViewModel {
     private AppRepository repository;
 
     public CreateTeacherViewModel(AppRepository repository) {

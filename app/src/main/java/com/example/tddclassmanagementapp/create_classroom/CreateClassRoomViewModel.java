@@ -2,16 +2,17 @@ package com.example.tddclassmanagementapp.create_classroom;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.ViewModel;
 
 import com.example.tddclassmanagementapp.Event;
 import com.example.tddclassmanagementapp.data.source.AppRepository;
 import com.example.tddclassmanagementapp.data.source.entities.ClassRoom;
 
-public class CreateClassRoomViewModel {
+public class CreateClassRoomViewModel extends ViewModel {
     private final AppRepository repository;
-    private MutableLiveData<String> observableName =
+    private final MutableLiveData<String> observableName =
             new MutableLiveData<>();
-    private MutableLiveData<Event<Boolean>> creationCompleteEvent =
+    private final MutableLiveData<Event<Boolean>> creationCompleteEvent =
             new MutableLiveData<>();
 
     public CreateClassRoomViewModel(AppRepository repository) {
