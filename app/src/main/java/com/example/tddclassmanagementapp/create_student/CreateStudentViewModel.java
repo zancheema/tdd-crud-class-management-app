@@ -14,10 +14,10 @@ import javax.net.ssl.SSLSession;
 
 public class CreateStudentViewModel extends ViewModel {
     private AppRepository repository;
+    private String name;
+    private int rollNo = -1;
     private MutableLiveData<Event<Boolean>> emptyRollNoEvent = new MutableLiveData<>();
-    private MutableLiveData<Integer> observableRollNo = new MutableLiveData<>();
     private MutableLiveData<Event<Boolean>> emptyNameEvent = new MutableLiveData<>();
-    private MutableLiveData<String> observableName = new MutableLiveData<>();
     private MutableLiveData<Event<Boolean>> creationCompleteEvent = new MutableLiveData<>();
 
     public CreateStudentViewModel(AppRepository repository) {
@@ -26,12 +26,10 @@ public class CreateStudentViewModel extends ViewModel {
 
     public void createStudent() {
         boolean flag = false;
-        Integer rollNo = observableRollNo.getValue();
-        if (rollNo == null) {
+        if (rollNo == -1) {
             generateEmptyRollNoEvent();
             flag = true;
         }
-        String name = observableName.getValue();
         if (name == null || name.isEmpty()) {
             generateEmptyNameEvent();
             flag = true;
@@ -63,11 +61,11 @@ public class CreateStudentViewModel extends ViewModel {
     }
 
     public void setRollNo(int rollNo) {
-        observableRollNo.setValue(rollNo);
+        this.rollNo = rollNo;
     }
 
     public void setName(String name) {
-        observableName.setValue(name);
+        this.name = name;
     }
 
     public LiveData<Event<Boolean>> observeCreationCompleteEvent() {

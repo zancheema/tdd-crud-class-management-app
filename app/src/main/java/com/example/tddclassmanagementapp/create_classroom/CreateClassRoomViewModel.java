@@ -10,8 +10,7 @@ import com.example.tddclassmanagementapp.data.source.entities.ClassRoom;
 
 public class CreateClassRoomViewModel extends ViewModel {
     private final AppRepository repository;
-    private final MutableLiveData<String> observableName =
-            new MutableLiveData<>();
+    private String name;
     private final MutableLiveData<Event<Boolean>> creationCompleteEvent =
             new MutableLiveData<>();
 
@@ -20,11 +19,10 @@ public class CreateClassRoomViewModel extends ViewModel {
     }
 
     public void setName(String name) {
-        observableName.setValue(name);
+        this.name = name;
     }
 
     public void createClassRoom() {
-        String name = observableName.getValue();
         if (name == null || name.isEmpty()) return;
 
         repository.createClassRoom(new ClassRoom(name, null));

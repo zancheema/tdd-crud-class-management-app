@@ -8,11 +8,20 @@ import com.example.tddclassmanagementapp.data.source.entities.Student;
 import com.example.tddclassmanagementapp.data.source.entities.Teacher;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static java.util.Collections.emptyList;
 
 public class FakeTestRepository implements AppRepository {
+    /* Maps a student by its rollNo, used to fetched student by rollNo */
+    private final Map<Integer, Student> studentData = new HashMap<>();
+    /* Maps a teacher by its id, used to fetched teacher by id */
+    private final Map<String, Teacher> teacherData = new HashMap<>();
+    /* Maps a classRoom by its id, used to fetched classRoom by id */
+    private final Map<String, ClassRoom> classRoomData = new HashMap<>();
+
     private final MutableLiveData<List<Student>> observableStudents =
             new MutableLiveData<>(emptyList());
     private final MutableLiveData<List<Teacher>> observableTeachers =
@@ -57,38 +66,35 @@ public class FakeTestRepository implements AppRepository {
 
     @Override
     public void createStudent(Student s) {
-        List<Student> students = new ArrayList<>(observableStudents.getValue());
-        students.add(s);
-        observableStudents.setValue(students);
+        studentData.put(s.getRollNo(), s);
+        observableStudents.setValue(new ArrayList<>(studentData.values()));
     }
 
     @Override
     public void createTeacher(Teacher t) {
-        List<Teacher> teachers = new ArrayList<>(observableTeachers.getValue());
-        teachers.add(t);
-        observableTeachers.setValue(teachers);
+        teacherData.put(t.getId(), t);
+        observableTeachers.setValue(new ArrayList<>(teacherData.values()));
     }
 
     @Override
     public void createClassRoom(ClassRoom c) {
-        List<ClassRoom> classRooms = new ArrayList<>(observableClassRooms.getValue());
-        classRooms.add(c);
-        observableClassRooms.setValue(classRooms);
+        classRoomData.put(c.getId(), c);
+        observableClassRooms.setValue(new ArrayList<>(classRoomData.values()));
     }
 
     @Override
     public void updateStudent(Student s) {
-
+        createStudent(s);
     }
 
     @Override
     public void updateTeacher(Teacher t) {
-
+        createTeacher(t);
     }
 
     @Override
     public void updateClassRoom(ClassRoom c) {
-
+        createClassRoom(c);
     }
 
     @Override

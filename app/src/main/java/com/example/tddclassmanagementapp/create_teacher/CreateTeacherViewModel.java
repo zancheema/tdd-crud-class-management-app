@@ -17,15 +17,13 @@ public class CreateTeacherViewModel extends ViewModel {
 
     private final MutableLiveData<Event<Boolean>> creationCompleteEvent =
             new MutableLiveData<>();
-    private final MutableLiveData<String> observableName =
-            new MutableLiveData<>();
+    private String name;
 
     public void setName(String name) {
-        observableName.setValue(name);
+        this.name = name;
     }
 
     public void createTeacher() {
-        String name = observableName.getValue();
         if (name == null || name.isEmpty()) {
             return;
         }
