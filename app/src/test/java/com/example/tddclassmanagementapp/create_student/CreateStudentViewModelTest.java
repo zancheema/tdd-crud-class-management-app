@@ -3,7 +3,7 @@ package com.example.tddclassmanagementapp.create_student;
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule;
 
 import com.example.tddclassmanagementapp.Event;
-import com.example.tddclassmanagementapp.data.source.FakeAppRepository;
+import com.example.tddclassmanagementapp.data.source.FakeTestRepository;
 import com.example.tddclassmanagementapp.data.source.entities.Student;
 
 import org.junit.Before;
@@ -18,9 +18,12 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.contains;
 
 public class CreateStudentViewModelTest {
-    private FakeAppRepository repository;
+    private FakeTestRepository repository;
     private CreateStudentViewModel viewModel;
 
+    /**
+     * Runs all background tasks on Main Thread
+     */
     @Rule
     public final InstantTaskExecutorRule instantTaskExecutorRule =
             new InstantTaskExecutorRule();
@@ -31,7 +34,7 @@ public class CreateStudentViewModelTest {
      */
     @Before
     public void init() {
-        repository = new FakeAppRepository();
+        repository = new FakeTestRepository();
         viewModel = new CreateStudentViewModel(repository);
     }
 

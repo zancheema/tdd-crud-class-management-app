@@ -12,8 +12,12 @@ import java.util.List;
 
 import static java.util.Collections.emptyList;
 
-public class FakeAppRepository implements AppRepository {
+public class FakeTestRepository implements AppRepository {
     private final MutableLiveData<List<Student>> observableStudents =
+            new MutableLiveData<>(emptyList());
+    private final MutableLiveData<List<Teacher>> observableTeachers =
+            new MutableLiveData<>(emptyList());
+    private MutableLiveData<List<ClassRoom>> observableClassRooms =
             new MutableLiveData<>(emptyList());
 
     @Override
@@ -32,8 +36,8 @@ public class FakeAppRepository implements AppRepository {
     }
 
     @Override
-    public LiveData<List<Teacher>> observeAllTeacher() {
-        return null;
+    public LiveData<List<Teacher>> observeAllTeachers() {
+        return observableTeachers;
     }
 
     @Override
@@ -43,7 +47,7 @@ public class FakeAppRepository implements AppRepository {
 
     @Override
     public LiveData<List<ClassRoom>> observeAllClassRooms() {
-        return null;
+        return observableClassRooms;
     }
 
     @Override
@@ -60,12 +64,16 @@ public class FakeAppRepository implements AppRepository {
 
     @Override
     public void createTeacher(Teacher t) {
-
+        List<Teacher> teachers = new ArrayList<>(observableTeachers.getValue());
+        teachers.add(t);
+        observableTeachers.setValue(teachers);
     }
 
     @Override
     public void createClassRoom(ClassRoom c) {
-
+        List<ClassRoom> classRooms = new ArrayList<>(observableClassRooms.getValue());
+        classRooms.add(c);
+        observableClassRooms.setValue(classRooms);
     }
 
     @Override

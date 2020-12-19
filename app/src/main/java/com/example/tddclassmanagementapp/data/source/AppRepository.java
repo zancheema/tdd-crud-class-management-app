@@ -15,7 +15,7 @@ public interface AppRepository {
 
     LiveData<Student> observeStudentById(String id);
 
-    LiveData<List<Teacher>> observeAllTeacher();
+    LiveData<List<Teacher>> observeAllTeachers();
 
     LiveData<Teacher> observeTeacherById(String id);
 
