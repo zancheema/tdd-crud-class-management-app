@@ -1,8 +1,11 @@
 package com.example.tddclassmanagementapp.create_student;
 
+import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelProvider.NewInstanceFactory;
 
 import com.example.tddclassmanagementapp.Event;
 import com.example.tddclassmanagementapp.data.source.AppRepository;
@@ -70,5 +73,20 @@ public class CreateStudentViewModel extends ViewModel {
 
     public LiveData<Event<Boolean>> observeCreationCompleteEvent() {
         return creationCompleteEvent;
+    }
+
+    static class CreateStudentViewModelFactory extends NewInstanceFactory {
+        private AppRepository repository;
+
+        public CreateStudentViewModelFactory(AppRepository repository) {
+            this.repository = repository;
+        }
+
+        @SuppressWarnings("UNCHECKED_CAST")
+        @NonNull
+        @Override
+        public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
+            return (T) new CreateStudentViewModel(repository);
+        }
     }
 }

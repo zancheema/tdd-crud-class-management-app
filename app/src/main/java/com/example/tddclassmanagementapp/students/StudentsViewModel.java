@@ -1,8 +1,10 @@
 package com.example.tddclassmanagementapp.students;
 
+import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModelProvider.NewInstanceFactory;
 
 import com.example.tddclassmanagementapp.Event;
 import com.example.tddclassmanagementapp.data.source.AppRepository;
@@ -29,5 +31,20 @@ public class StudentsViewModel extends ViewModel {
 
     public LiveData<List<Student>> observeStudents() {
         return repository.observeAllStudents();
+    }
+
+    public static class StudentsViewModelFactory extends NewInstanceFactory {
+        private AppRepository repository;
+
+        public StudentsViewModelFactory(AppRepository repository) {
+            this.repository = repository;
+        }
+
+        @SuppressWarnings("UNCHECKED_CAST")
+        @NonNull
+        @Override
+        public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
+            return (T) new StudentsViewModel(repository);
+        }
     }
 }

@@ -4,7 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.Observer;
 
 public class Event<T> {
-    interface EventHandler<T> {
+    public interface EventHandler<T> {
         void onEventUnhandledContent(T content);
     }
 

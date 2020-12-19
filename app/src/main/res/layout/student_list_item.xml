@@ -1,46 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="@dimen/card_item_margin"
-    android:layout_marginBottom="@dimen/card_item_margin"
-    tools:layout_editor_absoluteX="305dp"
-    tools:layout_editor_absoluteY="313dp">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <data>
+        <variable
+            name="student"
+            type="com.example.tddclassmanagementapp.data.source.entities.Student" />
+        <import type="com.example.tddclassmanagementapp.util.AppUtil" />
+    </data>
+
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="@dimen/card_item_padding">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/card_item_margin"
+        android:layout_marginBottom="@dimen/card_item_margin"
+        tools:layout_editor_absoluteX="305dp"
+        tools:layout_editor_absoluteY="313dp">
 
-        <ImageView
-            android:id="@+id/deleteStudentIcon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:tint="#FF0000"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_baseline_delete_24" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="@dimen/card_item_padding">
 
-        <TextView
-            android:id="@+id/studentName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="@string/roll_no_placeholder" />
+            <ImageView
+                android:id="@+id/deleteStudentIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:tint="#FF0000"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_baseline_delete_24" />
 
-        <TextView
-            android:id="@+id/studentRollNo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            app:layout_constraintStart_toStartOf="@+id/studentName"
-            app:layout_constraintTop_toBottomOf="@+id/studentName"
-            tools:text="@string/name_placeholder" />
+            <TextView
+                android:id="@+id/studentName"
+                android:text="@{AppUtil.formatRollNo(student.rollNo)}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="@string/roll_no_placeholder" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:id="@+id/studentRollNo"
+                android:text="@{AppUtil.formatName(student.name)}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:layout_constraintStart_toStartOf="@+id/studentName"
+                app:layout_constraintTop_toBottomOf="@+id/studentName"
+                tools:text="@string/name_placeholder" />
 
-</androidx.cardview.widget.CardView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+</layout>
