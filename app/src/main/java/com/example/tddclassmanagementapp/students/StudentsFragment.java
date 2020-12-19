@@ -15,8 +15,9 @@ import android.view.ViewGroup;
 import com.example.tddclassmanagementapp.Event;
 import com.example.tddclassmanagementapp.MyApplication;
 import com.example.tddclassmanagementapp.databinding.FragmentStudentsBinding;
+import com.example.tddclassmanagementapp.students.StudentsViewModel.StudentsViewModelFactory;
 
-import java.util.List;
+import static com.example.tddclassmanagementapp.students.StudentsFragmentDirections.actionStudentsFragmentToCreateStudentFragment;
 
 public class StudentsFragment extends Fragment {
     private StudentsViewModel viewModel;
@@ -29,7 +30,7 @@ public class StudentsFragment extends Fragment {
         viewDataBinding = FragmentStudentsBinding.inflate(inflater, container, false);
         viewModel = new ViewModelProvider(
                 this,
-                new StudentsViewModel.StudentsViewModelFactory(
+                new StudentsViewModelFactory(
                         ((MyApplication) requireActivity().getApplication()).getRepository()
                 )
         ).get(StudentsViewModel.class);
@@ -51,13 +52,13 @@ public class StudentsFragment extends Fragment {
         viewModel.observeAddStudentEvent().observe(getViewLifecycleOwner(), new Event.EventObserver<>(
                 add -> {
                     if (add)
-                        navController.navigate(StudentsFragmentDirections.actionStudentsFragmentToCreateStudentFragment());
+                        navController.navigate(actionStudentsFragmentToCreateStudentFragment());
                 }
         ));
     }
 
     private void setUpListAdapter() {
-        StudentsAdapter listAdapter = new StudentsAdapter();
+        StudentsListAdapter listAdapter = new StudentsListAdapter();
         viewDataBinding.studentList.setAdapter(listAdapter);
         viewModel.observeStudents().observe(getViewLifecycleOwner(), students -> {
             listAdapter.submitList(students);

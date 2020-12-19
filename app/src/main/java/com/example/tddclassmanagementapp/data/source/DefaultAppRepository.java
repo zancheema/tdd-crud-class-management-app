@@ -1,4 +1,4 @@
-package com.example.tddclassmanagementapp;
+package com.example.tddclassmanagementapp.data.source;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

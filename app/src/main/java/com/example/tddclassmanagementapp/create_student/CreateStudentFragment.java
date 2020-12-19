@@ -30,25 +30,24 @@ public class CreateStudentFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         viewDataBinding = FragmentCreateStudentBinding.inflate(inflater, container, false);
-        return viewDataBinding.getRoot();
-    }
-
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-
         viewModel = new ViewModelProvider(
                 this,
                 new CreateStudentViewModel.CreateStudentViewModelFactory(
                         ((MyApplication) requireActivity().getApplication()).getRepository()
                 )
         ).get(CreateStudentViewModel.class);
-        navController = NavHostFragment.findNavController(this);
+        return viewDataBinding.getRoot();
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
         setUpCreateButton();
         setUpNavigation();
     }
 
     private void setUpNavigation() {
+        navController = NavHostFragment.findNavController(this);
         viewModel.observeCreationCompleteEvent().observe(getViewLifecycleOwner(), new Event.EventObserver<>(
                 created -> {
                     if (created) navController.popBackStack();

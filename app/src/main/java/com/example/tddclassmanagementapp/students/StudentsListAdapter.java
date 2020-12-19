@@ -11,9 +11,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.tddclassmanagementapp.data.source.entities.Student;
 import com.example.tddclassmanagementapp.databinding.StudentListItemBinding;
 
-public class StudentsAdapter extends ListAdapter<Student, StudentsAdapter.ViewHolder> {
+public class StudentsListAdapter extends ListAdapter<Student, StudentsListAdapter.ViewHolder> {
 
-    public StudentsAdapter() {
+    public StudentsListAdapter() {
         super(new StudentDiffCallback());
     }
 

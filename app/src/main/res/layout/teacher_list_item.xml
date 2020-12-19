@@ -1,35 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="@dimen/card_item_margin"
-    android:layout_marginBottom="@dimen/card_item_margin">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <data>
+        <variable
+            name="teacher"
+            type="com.example.tddclassmanagementapp.data.source.entities.Teacher" />
+    </data>
+
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="@dimen/card_item_padding">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/card_item_margin"
+        android:layout_marginBottom="@dimen/card_item_margin">
 
-        <ImageView
-            android:id="@+id/deleteTeacherIcon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:tint="#FF0000"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_baseline_delete_24" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="@dimen/card_item_padding">
 
-        <TextView
-            android:id="@+id/teacherName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/name_placeholder"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <ImageView
+                android:id="@+id/deleteTeacherIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:tint="#FF0000"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_baseline_delete_24" />
 
-</androidx.cardview.widget.CardView>
+            <TextView
+                android:id="@+id/teacherName"
+                android:text="@{teacher.name}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="@string/name_placeholder"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+</layout>
