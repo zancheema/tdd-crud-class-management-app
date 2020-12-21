@@ -29,6 +29,7 @@ public class CreateClassRoomFragment extends Fragment {
                 this, new CreateClassRoomViewModel.CreateClassRoomViewModelFactory(
                 ((MyApplication) requireActivity().getApplication()).getRepository()
         )).get(CreateClassRoomViewModel.class);
+        viewDataBinding.setViewmodel(this.viewModel);
 
         return viewDataBinding.getRoot();
     }
@@ -36,7 +37,12 @@ public class CreateClassRoomFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        viewDataBinding.setLifecycleOwner(getViewLifecycleOwner());
         setUpNavigation();
+        setUpCreateClassRoomBtn();
+    }
+
+    private void setUpCreateClassRoomBtn() {
         viewDataBinding.createClassRoomBtn.setOnClickListener(v -> {
             String name = viewDataBinding.createClassRoomName.getText().toString();
             viewModel.setName(name);
