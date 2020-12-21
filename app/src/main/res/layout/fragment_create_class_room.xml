@@ -7,6 +7,7 @@
         <variable
             name="viewmodel"
             type="com.example.tddclassmanagementapp.create_classroom.CreateClassRoomViewModel" />
+        <import type="android.view.View" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -32,6 +33,7 @@
 
         <Spinner
             android:id="@+id/createClassRoomTeacherSpinner"
+            android:visibility="@{viewmodel.teacherNames.size() == 0 ? View.GONE : View.VISIBLE}"
             app:spinner_items="@{viewmodel.teacherNames}"
             android:selection="@={viewmodel.selectedTeacherIndex}"
             android:layout_width="match_parent"
@@ -41,7 +43,6 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
-            android:visibility="visible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/createClassRoomName" />

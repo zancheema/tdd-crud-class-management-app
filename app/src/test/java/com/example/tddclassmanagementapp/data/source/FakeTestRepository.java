@@ -60,7 +60,12 @@ public class FakeTestRepository implements AppRepository {
     }
 
     @Override
-    public LiveData<ClassRoom> observeClassById(String id) {
+    public LiveData<List<ClassRoom>> observeClassRoomsByTeacherId(String id) {
+        return null;
+    }
+
+    @Override
+    public LiveData<ClassRoom> observeClassRoomById(String id) {
         return null;
     }
 

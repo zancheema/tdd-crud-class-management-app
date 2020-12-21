@@ -20,6 +20,9 @@ public interface StudentDao {
     @Query("SELECT * FROM students WHERE class_id = :classId ORDER BY roll_no")
     List<Student> getByClassId(String classId);
 
+    @Query("SELECT * FROM students WHERE class_id = :classId ORDER BY roll_no")
+    LiveData<List<Student>> observeByClassId(String classId);
+
     @Query("SELECT * FROM students WHERE roll_no = :roll")
     Student getById(int roll);
 

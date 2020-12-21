@@ -2,6 +2,7 @@ package com.example.tddclassmanagementapp.data.source;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Transformations;
 
 import com.example.tddclassmanagementapp.data.source.daos.ClassRoomDao;
 import com.example.tddclassmanagementapp.data.source.daos.StudentDao;
@@ -10,6 +11,7 @@ import com.example.tddclassmanagementapp.data.source.entities.ClassRoom;
 import com.example.tddclassmanagementapp.data.source.entities.Student;
 import com.example.tddclassmanagementapp.data.source.entities.Teacher;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Executor;
 
@@ -49,7 +51,7 @@ public class DefaultAppRepository implements AppRepository {
 
     @Override
     public LiveData<List<Student>> observeStudentsByClassId(String id) {
-        return null;
+        return studentDao.observeByClassId(id);
     }
 
     @Override
@@ -71,13 +73,18 @@ public class DefaultAppRepository implements AppRepository {
 
     @Override
     public LiveData<Teacher> observeTeacherById(String id) {
-        return null;
+        return teacherDao.observeById(id);
     }
 
     @Override
     public LiveData<List<ClassRoom>> observeAllClassRooms() {
         refreshClassRooms();
         return observableClassRooms;
+    }
+
+    @Override
+    public LiveData<List<ClassRoom>> observeClassRoomsByTeacherId(String id) {
+        return classRoomDao.observeByTeacherId(id);
     }
 
     public void refreshClassRooms() {
@@ -87,8 +94,8 @@ public class DefaultAppRepository implements AppRepository {
     }
 
     @Override
-    public LiveData<ClassRoom> observeClassById(String id) {
-        return null;
+    public LiveData<ClassRoom> observeClassRoomById(String id) {
+        return classRoomDao.observeById(id);
     }
 
     @Override

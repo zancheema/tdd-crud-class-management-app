@@ -3,23 +3,42 @@ package com.example.tddclassmanagementapp.create_student;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Transformations;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider.NewInstanceFactory;
 
 import com.example.tddclassmanagementapp.Event;
 import com.example.tddclassmanagementapp.data.source.AppRepository;
+import com.example.tddclassmanagementapp.data.source.entities.ClassRoom;
 import com.example.tddclassmanagementapp.data.source.entities.Student;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class CreateStudentViewModel extends ViewModel {
-    private AppRepository repository;
+
+    private final AppRepository repository;
     private String name;
     private int rollNo = -1;
-    private MutableLiveData<Event<Boolean>> emptyRollNoEvent = new MutableLiveData<>();
-    private MutableLiveData<Event<Boolean>> emptyNameEvent = new MutableLiveData<>();
-    private MutableLiveData<Event<Boolean>> creationCompleteEvent = new MutableLiveData<>();
+    private final MutableLiveData<Event<Boolean>> emptyRollNoEvent =
+            new MutableLiveData<>();
+    private final MutableLiveData<Event<Boolean>> emptyNameEvent =
+            new MutableLiveData<>();
+    private final MutableLiveData<Event<Boolean>> creationCompleteEvent =
+            new MutableLiveData<>();
+    private final LiveData<List<ClassRoom>> classRooms;
+    public final LiveData<List<String>> classRoomNames;
+    public final MutableLiveData<Integer> classRoomIndex =
+            new MutableLiveData<>();
 
     public CreateStudentViewModel(AppRepository repository) {
         this.repository = repository;
+        classRooms = repository.observeAllClassRooms();
+        classRoomNames = Transformations.map(classRooms, classRooms -> {
+            List<String> names = new ArrayList<>();
+            for (ClassRoom c : classRooms) names.add(c.getName());
+            return names;
+        });
     }
 
     public LiveData<Event<Boolean>> observeEmptyNameEvent() {
@@ -42,7 +61,10 @@ public class CreateStudentViewModel extends ViewModel {
         }
         if (flag) return;
 
-        repository.createStudent(new Student(rollNo, name, null));
+        Integer index = classRoomIndex.getValue();
+        String classId = index == null ? null : classRooms.getValue().get(index).getId();
+
+        repository.createStudent(new Student(rollNo, name, classId));
         generateCreationCompleteEvent();
     }
 

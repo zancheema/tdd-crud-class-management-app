@@ -35,12 +35,14 @@ public class CreateStudentFragment extends Fragment {
                         ((MyApplication) requireActivity().getApplication()).getRepository()
                 )
         ).get(CreateStudentViewModel.class);
+        viewDataBinding.setViewmodel(this.viewModel);
         return viewDataBinding.getRoot();
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        viewDataBinding.setLifecycleOwner(getViewLifecycleOwner());
         setUpCreateButton();
         setUpNavigation();
     }

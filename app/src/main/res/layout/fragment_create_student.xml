@@ -4,6 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+        <variable
+            name="viewmodel"
+            type="com.example.tddclassmanagementapp.create_student.CreateStudentViewModel" />
+        <import type="android.view.View" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -55,6 +59,9 @@
 
         <Spinner
             android:id="@+id/createStudentClassRoomSpinner"
+            android:visibility="@{viewmodel.classRoomNames.size() == 0 ? View.GONE : View.VISIBLE}"
+            app:spinner_items="@{viewmodel.classRoomNames}"
+            android:selection="@={viewmodel.classRoomIndex}"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"

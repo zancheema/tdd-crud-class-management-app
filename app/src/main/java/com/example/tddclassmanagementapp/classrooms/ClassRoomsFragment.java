@@ -14,9 +14,9 @@ import android.view.ViewGroup;
 
 import com.example.tddclassmanagementapp.Event;
 import com.example.tddclassmanagementapp.MyApplication;
-import com.example.tddclassmanagementapp.R;
 import com.example.tddclassmanagementapp.databinding.FragmentClassRoomsBinding;
 
+import static com.example.tddclassmanagementapp.classrooms.ClassRoomsFragmentDirections.actionClassRoomsFragmentToClassRoomFragment;
 import static com.example.tddclassmanagementapp.classrooms.ClassRoomsFragmentDirections.actionClassRoomsFragmentToCreateClassRoomFragment;
 
 public class ClassRoomsFragment extends Fragment {
@@ -65,6 +65,12 @@ public class ClassRoomsFragment extends Fragment {
                 add -> {
                     if (add)
                         navController.navigate(actionClassRoomsFragmentToCreateClassRoomFragment());
+                }
+        ));
+        viewModel.observeOpenClassRoomEvent().observe(getViewLifecycleOwner(), new Event.EventObserver<>(
+                classRoom -> {
+                    if (classRoom != null)
+                        navController.navigate(actionClassRoomsFragmentToClassRoomFragment(classRoom.getId(), classRoom.getName()));
                 }
         ));
     }

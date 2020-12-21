@@ -21,7 +21,9 @@ public interface AppRepository {
 
     LiveData<List<ClassRoom>> observeAllClassRooms();
 
-    LiveData<ClassRoom> observeClassById(String id);
+    LiveData<List<ClassRoom>> observeClassRoomsByTeacherId(String id);
+
+    LiveData<ClassRoom> observeClassRoomById(String id);
 
     void createStudent(Student s);
 

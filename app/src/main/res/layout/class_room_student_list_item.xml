@@ -5,46 +5,44 @@
 
     <data>
         <variable
-            name="classRoom"
-            type="com.example.tddclassmanagementapp.data.source.entities.ClassRoom" />
-        <variable
-            name="viewmodel"
-            type="com.example.tddclassmanagementapp.classrooms.ClassRoomsViewModel" />
+            name="student"
+            type="com.example.tddclassmanagementapp.data.source.entities.Student" />
         <import type="com.example.tddclassmanagementapp.util.AppUtil" />
     </data>
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="@{() -> viewmodel.openClassRoom(classRoom)}"
         android:layout_marginTop="@dimen/card_item_margin"
-        android:layout_marginEnd="@dimen/card_item_margin"
-        android:layout_marginRight="@dimen/card_item_margin">
+        android:layout_marginBottom="@dimen/card_item_margin"
+        tools:layout_editor_absoluteX="305dp"
+        tools:layout_editor_absoluteY="313dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:padding="@dimen/card_item_padding">
 
-            <ImageView
-                android:id="@+id/deleteClassRoomIcon"
-                android:onClick="@{() -> viewmodel.deleteClassRoom(classRoom)}"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:tint="#FF0000"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_baseline_delete_24" />
-
             <TextView
-                android:id="@+id/classRoomName"
-                android:text="@{AppUtil.formatName(classRoom.name)}"
+                android:id="@+id/studentName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="@{AppUtil.formatRollNo(student.rollNo)}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
+                tools:text="@string/roll_no_placeholder" />
+
+            <TextView
+                android:id="@+id/studentRollNo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@{AppUtil.formatName(student.name)}"
+                app:layout_constraintStart_toStartOf="@+id/studentName"
+                app:layout_constraintTop_toBottomOf="@+id/studentName"
                 tools:text="@string/name_placeholder" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
+
     </androidx.cardview.widget.CardView>
 </layout>

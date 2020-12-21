@@ -42,6 +42,10 @@ public class CreateTeacherFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         setUpNavigation();
+        setUpCreateTeacherButton();
+    }
+
+    private void setUpCreateTeacherButton() {
         viewDataBinding.createTeacherBtn.setOnClickListener(v -> {
             String name = viewDataBinding.createTeacherName.getText().toString();
             viewModel.setName(name);

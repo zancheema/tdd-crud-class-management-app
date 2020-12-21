@@ -4,7 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProvider.NewInstanceFactory;
 
 import com.example.tddclassmanagementapp.Event;
@@ -12,7 +11,7 @@ import com.example.tddclassmanagementapp.data.source.AppRepository;
 import com.example.tddclassmanagementapp.data.source.entities.Teacher;
 
 public class CreateTeacherViewModel extends ViewModel {
-    private AppRepository repository;
+    private final AppRepository repository;
 
     public CreateTeacherViewModel(AppRepository repository) {
         this.repository = repository;

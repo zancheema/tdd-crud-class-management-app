@@ -1,5 +1,6 @@
 package com.example.tddclassmanagementapp.classrooms;
 
+
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -23,8 +24,15 @@ public class ClassRoomsViewModel extends ViewModel {
     private final MutableLiveData<Event<Boolean>> observableAddClassRoomEvent =
             new MutableLiveData<>();
 
+    private final MutableLiveData<Event<ClassRoom>> openClassRoomEvent =
+            new MutableLiveData<>();
+
     public LiveData<Event<Boolean>> observeAddClassRoomEvent() {
         return observableAddClassRoomEvent;
+    }
+
+    public MutableLiveData<Event<ClassRoom>> observeOpenClassRoomEvent() {
+        return openClassRoomEvent;
     }
 
     public LiveData<List<ClassRoom>> observeClassRooms() {
@@ -35,12 +43,16 @@ public class ClassRoomsViewModel extends ViewModel {
         observableAddClassRoomEvent.setValue(new Event<>(true));
     }
 
+    public void openClassRoom(ClassRoom c) {
+        openClassRoomEvent.setValue(new Event<>(c));
+    }
+
     public void deleteClassRoom(ClassRoom c) {
         repository.deleteClassRoom(c);
     }
 
     public static class ClassRoomsViewModelFactory extends ViewModelProvider.NewInstanceFactory {
-        private AppRepository repository;
+        private final AppRepository repository;
 
         public ClassRoomsViewModelFactory(AppRepository repository) {
             this.repository = repository;

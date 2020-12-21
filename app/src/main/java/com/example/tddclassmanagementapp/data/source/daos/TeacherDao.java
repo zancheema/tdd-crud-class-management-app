@@ -20,6 +20,9 @@ public interface TeacherDao {
     @Query("SELECT * FROM teachers WHERE id = :id")
     Teacher getById(String id);
 
+    @Query("SELECT * FROM teachers WHERE id = :id")
+    LiveData<Teacher> observeById(String id);
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert(Teacher t);
 

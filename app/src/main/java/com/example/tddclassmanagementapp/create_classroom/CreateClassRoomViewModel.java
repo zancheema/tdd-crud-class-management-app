@@ -15,16 +15,9 @@ import com.example.tddclassmanagementapp.data.source.entities.ClassRoom;
 import com.example.tddclassmanagementapp.data.source.entities.Teacher;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
-import static java.util.Collections.emptyList;
-import static java.util.Collections.emptyMap;
 
 public class CreateClassRoomViewModel extends ViewModel {
-    private static final String TAG = "CreateClassRoomViewMode";
     private final AppRepository repository;
     private String name;
     private final MutableLiveData<Event<Boolean>> creationCompleteEvent =
@@ -54,11 +47,8 @@ public class CreateClassRoomViewModel extends ViewModel {
 
     public void createClassRoom() {
         if (name == null || name.isEmpty()) return;
-        int index = selectedTeacherIndex.getValue();
-        String teacherId = index == -1 ? null : teachers.getValue().get(index).getId();
-        Teacher t = teachers.getValue().get(index);
-        Log.d(TAG, "createClassRoom: Teacher is: " + t);
-
+        Integer index = selectedTeacherIndex.getValue();
+        String teacherId = index == null ? null : teachers.getValue().get(index).getId();
         repository.createClassRoom(new ClassRoom(name, teacherId));
         generateCreationCompleteEvent();
     }
@@ -72,7 +62,7 @@ public class CreateClassRoomViewModel extends ViewModel {
     }
 
     public static class CreateClassRoomViewModelFactory extends ViewModelProvider.NewInstanceFactory {
-        private AppRepository repository;
+        private final AppRepository repository;
 
         public CreateClassRoomViewModelFactory(AppRepository repository) {
             this.repository = repository;

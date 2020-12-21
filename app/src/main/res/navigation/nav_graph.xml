@@ -75,7 +75,14 @@
     <fragment
         android:id="@+id/classRoomFragment"
         android:name="com.example.tddclassmanagementapp.classroom.ClassRoomFragment"
-        android:label="ClassRoomFragment" />
+        android:label="ClassRoomFragment" >
+        <argument
+            android:name="classRoomId"
+            app:argType="string" />
+        <argument
+            android:name="classRoomName"
+            app:argType="string" />
+    </fragment>
     <fragment
         android:id="@+id/createClassRoomFragment"
         android:name="com.example.tddclassmanagementapp.create_classroom.CreateClassRoomFragment"

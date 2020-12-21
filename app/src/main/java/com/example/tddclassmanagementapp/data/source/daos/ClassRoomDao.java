@@ -20,6 +20,15 @@ public interface ClassRoomDao {
     @Query("SELECT * FROM class_rooms WHERE id = :id")
     ClassRoom getById(String id);
 
+    @Query("SELECT * FROM class_rooms WHERE teacher_id = :teacherId")
+    List<ClassRoom> getByTeacherId(String teacherId);
+
+    @Query("SELECT * FROM class_rooms WHERE teacher_id = :teacherId")
+    LiveData<List<ClassRoom>> observeByTeacherId(String teacherId);
+
+    @Query("SELECT * FROM class_rooms WHERE id = :id")
+    LiveData<ClassRoom> observeById(String id);
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert(ClassRoom c);
 
