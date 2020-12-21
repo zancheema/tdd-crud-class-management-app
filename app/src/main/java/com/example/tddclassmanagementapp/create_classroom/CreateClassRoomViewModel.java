@@ -7,7 +7,6 @@ import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.tddclassmanagementapp.Event;
-import com.example.tddclassmanagementapp.classrooms.ClassRoomsViewModel;
 import com.example.tddclassmanagementapp.data.source.AppRepository;
 import com.example.tddclassmanagementapp.data.source.entities.ClassRoom;
 
@@ -51,7 +50,7 @@ public class CreateClassRoomViewModel extends ViewModel {
         @NonNull
         @Override
         public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
-            return (T) new ClassRoomsViewModel(repository);
+            return (T) new CreateClassRoomViewModel(repository);
         }
     }
 }
