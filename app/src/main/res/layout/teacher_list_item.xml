@@ -7,6 +7,10 @@
         <variable
             name="teacher"
             type="com.example.tddclassmanagementapp.data.source.entities.Teacher" />
+        <variable
+            name="viewmodel"
+            type="com.example.tddclassmanagementapp.teachers.TeachersViewModel" />
+        <import type="com.example.tddclassmanagementapp.util.AppUtil" />
     </data>
 
     <androidx.cardview.widget.CardView
@@ -22,6 +26,7 @@
 
             <ImageView
                 android:id="@+id/deleteTeacherIcon"
+                android:onClick="@{() -> viewmodel.deleteTeacher(teacher)}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:tint="#FF0000"
@@ -32,7 +37,7 @@
 
             <TextView
                 android:id="@+id/teacherName"
-                android:text="@{teacher.name}"
+                android:text="@{AppUtil.formatName(teacher.name)}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 tools:text="@string/name_placeholder"

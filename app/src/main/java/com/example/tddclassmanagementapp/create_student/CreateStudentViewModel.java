@@ -4,16 +4,11 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProvider.NewInstanceFactory;
 
 import com.example.tddclassmanagementapp.Event;
 import com.example.tddclassmanagementapp.data.source.AppRepository;
 import com.example.tddclassmanagementapp.data.source.entities.Student;
-
-import java.net.HttpCookie;
-
-import javax.net.ssl.SSLSession;
 
 public class CreateStudentViewModel extends ViewModel {
     private AppRepository repository;
@@ -25,6 +20,14 @@ public class CreateStudentViewModel extends ViewModel {
 
     public CreateStudentViewModel(AppRepository repository) {
         this.repository = repository;
+    }
+
+    public LiveData<Event<Boolean>> observeEmptyNameEvent() {
+        return emptyNameEvent;
+    }
+
+    public LiveData<Event<Boolean>> observeEmptyRollNoEvent() {
+        return emptyRollNoEvent;
     }
 
     public void createStudent() {
@@ -41,14 +44,6 @@ public class CreateStudentViewModel extends ViewModel {
 
         repository.createStudent(new Student(rollNo, name, null));
         generateCreationCompleteEvent();
-    }
-
-    public LiveData<Event<Boolean>> observeEmptyNameEvent() {
-        return emptyNameEvent;
-    }
-
-    public LiveData<Event<Boolean>> observeEmptyRollNoEvent() {
-        return emptyRollNoEvent;
     }
 
     private void generateEmptyRollNoEvent() {

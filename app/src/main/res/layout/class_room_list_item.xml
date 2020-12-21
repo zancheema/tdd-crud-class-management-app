@@ -7,6 +7,9 @@
         <variable
             name="classRoom"
             type="com.example.tddclassmanagementapp.data.source.entities.ClassRoom" />
+        <variable
+            name="viewmodel"
+            type="com.example.tddclassmanagementapp.classrooms.ClassRoomsViewModel" />
         <import type="com.example.tddclassmanagementapp.util.AppUtil" />
     </data>
 
@@ -21,6 +24,17 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:padding="@dimen/card_item_padding">
+
+            <ImageView
+                android:id="@+id/deleteClassRoomIcon"
+                android:onClick="@{() -> viewmodel.deleteClassRoom(classRoom)}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:tint="#FF0000"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_baseline_delete_24" />
 
             <TextView
                 android:id="@+id/classRoomName"

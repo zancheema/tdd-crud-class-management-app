@@ -3,7 +3,6 @@ package com.example.tddclassmanagementapp.data.source;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import com.example.tddclassmanagementapp.data.source.AppRepository;
 import com.example.tddclassmanagementapp.data.source.daos.ClassRoomDao;
 import com.example.tddclassmanagementapp.data.source.daos.StudentDao;
 import com.example.tddclassmanagementapp.data.source.daos.TeacherDao;
@@ -81,7 +80,7 @@ public class DefaultAppRepository implements AppRepository {
         return observableClassRooms;
     }
 
-    private void refreshClassRooms() {
+    public void refreshClassRooms() {
         executor.execute(() -> {
             observableClassRooms.postValue(classRoomDao.getAll());
         });
@@ -137,16 +136,25 @@ public class DefaultAppRepository implements AppRepository {
 
     @Override
     public void deleteStudent(Student s) {
-
+        executor.execute(() -> {
+            studentDao.delete(s);
+            refreshStudents();
+        });
     }
 
     @Override
     public void deleteTeacher(Teacher t) {
-
+        executor.execute(() -> {
+            teacherDao.delete(t);
+            refreshTeachers();
+        });
     }
 
     @Override
     public void deleteClassRoom(ClassRoom c) {
-
+        executor.execute(() -> {
+            classRoomDao.delete(c);
+            refreshClassRooms();
+        });
     }
 }

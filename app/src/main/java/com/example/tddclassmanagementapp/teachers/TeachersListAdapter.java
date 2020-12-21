@@ -13,8 +13,11 @@ import com.example.tddclassmanagementapp.databinding.TeacherListItemBinding;
 
 public class TeachersListAdapter extends ListAdapter<Teacher, TeachersListAdapter.ViewHolder> {
 
-    public TeachersListAdapter() {
+    private final TeachersViewModel viewModel;
+
+    public TeachersListAdapter(TeachersViewModel viewModel) {
         super(new TeachersListAdapter.TeacherDiffCallback());
+        this.viewModel = viewModel;
     }
 
     @NonNull
@@ -25,7 +28,7 @@ public class TeachersListAdapter extends ListAdapter<Teacher, TeachersListAdapte
 
     @Override
     public void onBindViewHolder(@NonNull TeachersListAdapter.ViewHolder holder, int position) {
-        holder.bind(getItem(position));
+        holder.bind(getItem(position), viewModel);
     }
 
 
@@ -37,8 +40,9 @@ public class TeachersListAdapter extends ListAdapter<Teacher, TeachersListAdapte
             this.binding = binding;
         }
 
-        public void bind(Teacher s) {
+        public void bind(Teacher s, TeachersViewModel viewModel) {
             binding.setTeacher(s);
+            binding.setViewmodel(viewModel);
             binding.executePendingBindings();
         }
 

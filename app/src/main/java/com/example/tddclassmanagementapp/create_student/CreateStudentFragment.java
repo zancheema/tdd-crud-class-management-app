@@ -15,7 +15,6 @@ import android.view.ViewGroup;
 
 import com.example.tddclassmanagementapp.Event;
 import com.example.tddclassmanagementapp.MyApplication;
-import com.example.tddclassmanagementapp.R;
 import com.example.tddclassmanagementapp.databinding.FragmentCreateStudentBinding;
 
 import static java.lang.Integer.parseInt;

@@ -48,7 +48,7 @@ public class TeachersFragment extends Fragment {
     }
 
     private void setUpListAdapter() {
-        TeachersListAdapter listAdapter = new TeachersListAdapter();
+        TeachersListAdapter listAdapter = new TeachersListAdapter(viewModel);
         viewDataBinding.teacherList.setAdapter(listAdapter);
         viewModel.observeTeachers().observe(getViewLifecycleOwner(), teachers -> {
             listAdapter.submitList(teachers);

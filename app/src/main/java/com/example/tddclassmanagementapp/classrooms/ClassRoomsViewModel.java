@@ -13,6 +13,7 @@ import com.example.tddclassmanagementapp.data.source.entities.ClassRoom;
 import java.util.List;
 
 public class ClassRoomsViewModel extends ViewModel {
+
     private final AppRepository repository;
 
     public ClassRoomsViewModel(AppRepository repository) {
@@ -22,16 +23,20 @@ public class ClassRoomsViewModel extends ViewModel {
     private final MutableLiveData<Event<Boolean>> observableAddClassRoomEvent =
             new MutableLiveData<>();
 
-    public void addClassRoom() {
-        observableAddClassRoomEvent.setValue(new Event<>(true));
-    }
-
     public LiveData<Event<Boolean>> observeAddClassRoomEvent() {
         return observableAddClassRoomEvent;
     }
 
     public LiveData<List<ClassRoom>> observeClassRooms() {
         return repository.observeAllClassRooms();
+    }
+
+    public void addClassRoom() {
+        observableAddClassRoomEvent.setValue(new Event<>(true));
+    }
+
+    public void deleteClassRoom(ClassRoom c) {
+        repository.deleteClassRoom(c);
     }
 
     public static class ClassRoomsViewModelFactory extends ViewModelProvider.NewInstanceFactory {

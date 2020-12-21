@@ -22,10 +22,6 @@ public class TeachersViewModel extends ViewModel {
     private final MutableLiveData<Event<Boolean>> observableAddTeacherEvent =
             new MutableLiveData<>();
 
-    public void addTeacher() {
-        observableAddTeacherEvent.setValue(new Event<>(true));
-    }
-
     public LiveData<Event<Boolean>> observeAddTeacherEvent() {
         return observableAddTeacherEvent;
     }
@@ -34,7 +30,16 @@ public class TeachersViewModel extends ViewModel {
         return repository.observeAllTeachers();
     }
 
+    public void addTeacher() {
+        observableAddTeacherEvent.setValue(new Event<>(true));
+    }
+
+    public void deleteTeacher(Teacher t) {
+        repository.deleteTeacher(t);
+    }
+
     public static class TeachersViewModelFactory extends ViewModelProvider.NewInstanceFactory {
+
         private AppRepository repository;
 
         public TeachersViewModelFactory(AppRepository repository) {

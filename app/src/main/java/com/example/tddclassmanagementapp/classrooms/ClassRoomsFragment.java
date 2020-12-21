@@ -49,7 +49,7 @@ public class ClassRoomsFragment extends Fragment {
      * set up the adapter for classRoomList
      */
     private void setUpListAdapter() {
-        ClassRoomsListAdapter listAdapter = new ClassRoomsListAdapter();
+        ClassRoomsListAdapter listAdapter = new ClassRoomsListAdapter(viewModel);
         viewDataBinding.classRoomList.setAdapter(listAdapter);
         viewModel.observeClassRooms().observe(getViewLifecycleOwner(), classRooms -> {
             listAdapter.submitList(classRooms);
